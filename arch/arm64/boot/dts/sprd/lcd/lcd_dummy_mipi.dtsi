@@ -1,0 +1,102 @@
+/ {
+	fragment {
+		target-path = "/";
+		__overlay__ {
+			lcds {
+				lcd_dummy_mipi_hd: lcd_dummy_mipi_hd {
+					/*lcd_nt36523_lc_mipi_hd*/
+					sprd,dsi-work-mode = <1>; /* video burst mode*/
+					sprd,dsi-lane-number = <4>;
+					sprd,dsi-color-format = "rgb888";
+
+		sprd,phy-bit-clock = <552000>;	/* kbps */
+					sprd,phy-escape-clock = <20000>;/* kHz */
+
+					sprd,width-mm = <68>;
+					sprd,height-mm = <121>;
+
+					sprd,esd-check-enable = <0>;
+					sprd,esd-check-mode = <0>;
+					sprd,esd-check-period = <1000>;
+					/* sprd,esd-check-regs = <0x0A>; */
+					/* sprd,esd-return-code = <0x9C>; */
+
+					sprd,reset-on-sequence = <1 5>, <0 5>, <1 5>, <0 5>, <1 20>;
+					sprd,reset-off-sequence = <0 20>;
+
+					sprd,initial-command = [
+39 00 00 04 B9 83 10 2E
+23 00 00 02 E9 CD
+23 00 00 02 BB 01
+23 00 00 02 E9 00
+39 00 00 05 D1 67 0C FF 05
+39 00 00 12 B1 10 FA AF AF 30 30 B1 4D 2F 36 36 36 36 22 21 15 00
+39 00 00 11 B2 00 20 35 3C 00 0C D4 4D 00 00 00 00 15 20 D7 00
+39 00 00 11 B4 10 10 01 01 88 88 68 50 08 8F 07 58 00 FF 00 FF
+39 00 00 03 D2 30 30
+39 00 00 08 BF FC 85 80 9C 36 00 04
+39 00 00 2C D3 00 00 00 00 3C 3D 00 00 00 27 27 22 0F 0D 0D 04 00 32 10 0C 00 0C 32 15 4C 05 4C 32 10 08 00 00 00 00 2B 50 B6 C8 2C 4F B6 C8 0F
+39 00 00 2F E0 00 06 0E 14 1C 2E 47 4F 57 53 6D 73 78 88 88 93 9E B2 B1 57 5E 68 7A 00 06 0E 14 1C 2E 47 4F 57 53 6D 73 78 88 88 93 9E B2 B1 57 5E 68 7A
+23 00 00 02 BD 01
+39 00 00 0A CB 80 36 12 16 C0 28 40 84 22
+39 00 00 0C D3 01 00 FC 00 00 11 10 00 0A 00 01
+23 00 00 02 BD 02
+39 00 00 07 B4 4E 00 33 11 33 88
+39 00 00 04 BF F2 00 02
+23 00 00 02 BD 00
+39 00 00 0F C0 23 23 22 11 A2 10 00 80 00 00 08 00 63 63
+39 00 00 2D D5 18 18 18 18 18 18 18 18 18 18 19 19 18 18 1A 1A 1B 1B 00 01 02 03 04 05 06 07 20 21 24 25 18 18 18 18 18 18 18 18 18 18 18 18 18 18
+39 00 00 2D D6 18 18 18 18 18 18 18 18 18 18 18 18 19 19 1A 1A 1B 1B 03 02 01 00 07 06 05 04 25 24 21 20 18 18 18 18 18 18 18 18 18 18 18 18 18 18
+39 00 00 04 D0 07 04 05
+39 00 00 18 E7 12 13 02 02 55 00 0E 0E 00 26 29 72 1C 72 01 27 00 00 00 00 17 00 68
+23 00 00 02 BD 01
+39 00 00 08 E7 01 30 01 94 0D B5 0E
+23 00 00 02 BD 02
+39 00 00 1D E7 FF 01 FD 01 00 00 22 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 81 00 02 40
+23 00 00 02 BD 02
+39 00 00 0D D8 FF FF FF FF FF F0 FF FF FF FF FF F0
+23 00 00 02 BD 00
+23 00 00 02 CC 02
+39 00 00 09 BA 70 03 A8 83 F2 80 C0 0D
+23 00 00 02 BD 03
+23 00 00 02 B2 80
+23 00 00 02 BD 00
+39 00 00 07 C8 00 04 04 00 00 82
+23 78 00 02 11 00
+23 14 00 02 29 00
+39 05 00 03 51 00 00
+39 05 00 05 C9 00 0D F0 00
+23 05 00 02 53 2C
+39 00 00 04 B9 00 00 00
+
+						];
+					sprd,sleep-in-command =  [
+						13 0A 00 01 28
+						13 78 00 01 10
+						23 0a 00 02 4F 01
+						];
+					sprd,sleep-out-command = [
+						13 78 00 01 11
+						13 64 00 01 29
+						];
+
+					display-timings {
+						native-mode = <&dummy_timing0>;
+
+						dummy_timing0: timing0 {
+				clock-frequency = <76800000>;
+							hactive = <800>;
+							vactive = <1340>;
+				hback-porch = <16>;
+				hfront-porch = <40>;
+				vback-porch = <28>; /*10*/
+				vfront-porch = <212>;
+				hsync-len = <12>;
+				vsync-len = <12>; /*4*/
+						};
+					};
+				};
+			};
+		};
+	};
+};

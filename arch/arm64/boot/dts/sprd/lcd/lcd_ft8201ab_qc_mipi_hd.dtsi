@@ -1,0 +1,107 @@
+/*
+ * NT35696 Truly LCD config dtsi file for spreadtrum
+ *
+ * Copyright (C) 2019, Spreadtrum Communications Inc.
+ *
+ * SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+ */
+
+/ {
+	fragment {
+		target-path = "/";
+		__overlay__ {
+			lcds {
+				lcd_ft8201ab_qc_mipi_hd: lcd_ft8201ab_qc_mipi_hd {
+
+					sprd,dsi-work-mode = <1>; /* video burst mode*/
+					sprd,dsi-lane-number = <4>;
+					sprd,dsi-color-format = "rgb888";
+
+					sprd,phy-bit-clock = <691000>;	/* kbps */
+					sprd,phy-escape-clock = <20000>;/* kHz */
+
+					sprd,width-mm = <113>;
+					sprd,height-mm = <190>;
+
+					sprd,esd-check-enable = <1>;
+					sprd,esd-check-mode = <0>;
+					sprd,esd-check-period = <1000>;
+					sprd,esd-check-regs = <0x0A>;
+					sprd,esd-return-code = <0x9D>;
+
+					sprd,reset-on-sequence = <1 5>, <0 5>, <1 5>, <0 5>, <1 20>;
+					sprd,reset-off-sequence = <0 20>;
+
+					sprd,initial-command = [
+						15 00 00 02 00 00
+						39 00 00 04 FF 82 01 01 
+						15 00 00 02 00 80
+						39 00 00 03 FF 82 01
+						15 78 00 02 11 00
+						15 00 00 02 00 98
+						39 00 00 09 CB D4 D4 D4 D4 D4 D4 D4 D4
+						15 00 00 02 00 A0
+						39 00 00 09 CB D4 D4 EB E8 D4 D4 D4 D4
+						15 00 00 02 00 A8
+						39 00 00 09 CB D4 D4 D4 D4 D4 D4 D4 D4
+						15 00 00 02 00 80
+						39 00 00 07 C0 00 C3 00 F8 00 28
+						15 00 00 02 00 90
+						39 00 00 07 C0 00 C3 00 F8 00 28
+						15 00 00 02 00 A0
+						39 00 00 07 C0 01 89 00 F8 00 28
+						15 00 00 02 00 B0
+						39 00 00 06 C0 00 C3 00 F8 28
+						15 00 00 02 00 D0
+						39 00 00 09 CE 01 00 0A 01 01 00 B1 00
+						15 00 00 02 00 9A
+						15 00 00 02 F5 3E
+						15 00 00 02 00 9C
+						15 00 00 02 F5 1D
+						15 00 00 02 00 C1
+						15 00 00 02 C0 11
+						15 00 00 02 00 A0
+						15 00 00 02 A5 04
+						15 00 00 02 00 A3
+						15 00 00 02 F3 3C
+						15 00 00 02 00 B0
+						39 00 00 08 B3 01 00 50 00 00 00 00
+						15 3C 00 02 29 00
+						];
+					sprd,sleep-in-command =  [
+						23 00 00 02 00 00
+						39 00 00 04 FF 82 01 01
+						23 00 00 02 00 08
+						39 00 00 03 FF 82 01
+						13 0A 00 01 28
+						13 78 00 01 10
+						];
+					sprd,sleep-out-command = [
+						23 00 00 02 00 00
+						39 00 00 04 FF 82 01 01
+						23 00 00 02 00 08
+						39 00 00 03 FF 82 01
+						13 78 00 01 11
+						13 64 00 01 29
+						];
+
+					display-timings {
+						native-mode = <&ft8201ab_qc_timing0>;
+
+						ft8201ab_qc_timing0: timing0 {
+							clock-frequency = <96000000>;
+							hactive = <800>;
+							vactive = <1340>;
+							hback-porch = <72>;
+							hfront-porch = <72>;
+							vback-porch = <32>; /*10*/
+							vfront-porch = <248>;
+							hsync-len = <39>;
+							vsync-len = <8>; /*4*/
+						};
+					};
+				};
+			};
+		};
+	};
+};

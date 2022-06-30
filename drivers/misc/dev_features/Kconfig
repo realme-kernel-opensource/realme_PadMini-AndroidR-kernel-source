@@ -1,0 +1,65 @@
+menu "TCONFIG"
+
+# project name	  
+config T_PROJECT_K520
+    bool "Project K520"
+    default n
+    help
+	  control project K520
+	  
+config T_PROJECT_K132
+    bool "Project K132"
+    default n
+    help
+	  control project K132
+
+config T_PROJECT_K330
+    bool "Project K330"
+    default n
+    help
+	  control project K330
+
+config T_PROJECT_K320
+    bool "Project K320"
+    default n
+    help
+	  control project K320
+
+config T_PROJECT_K310
+    bool "Project K310"
+    default n
+    help
+	  control project K310
+
+config T_PROJECT_V885
+    bool "Project V885"
+    default n
+    help
+	  control project V885
+
+config T_PROJECT_V880
+    bool "Project V880"
+    default n
+    help
+	  control project V880
+
+
+config NO_ALSPS_TP_PS
+    bool "Use TP as p-sensor"
+    default n
+    help
+	  Use TP as p-sensor  
+
+# product info.
+config T_PRODUCT_INFO
+    bool "T_PRODUCT_INFO"
+    default n
+
+config BCAMERA_FCAMERA_RST_ALONE
+    bool "Use back front camera reset alone"
+    default n
+    help
+	  control camera reset
+
+endmenu
+
